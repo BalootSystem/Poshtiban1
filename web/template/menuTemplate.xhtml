@@ -2,8 +2,55 @@
 <!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xml:lang="en" lang="en">
 <body>
-    menu
+<h:form>
+    <p:panelMenu>
+        <p:submenu label="مدیریت">
+            <p:submenu label="برنامه">
+                <p:menuitem value=" برنامه هفتگی دانش آموزان" outcome="timetablemanagement"/>
+                <p:menuitem value="برنامه هفتگی معلمان"/>
+                <p:menuitem value="برنامه امتحانات"/>
+            </p:submenu>
+            <p:submenu label="افراد">
+                <p:menuitem value="دانش آموزان"/>
+                <p:menuitem value="معلمان"/>
+            </p:submenu>
+            <p:submenu label="کلاس">
+                <p:menuitem value="کلاس ها"/>
+                <p:menuitem value="زمان بندی کلاس ها" outcome="lessonssettings"/>
+            </p:submenu>
+        </p:submenu>
+        <p:submenu label="معلمان">
+            <p:menuitem value="مشاهده برنامه هفتگی"/>
+            <p:menuitem value="برنامه امتحانات"/>
+            <p:submenu label="دفتر کلاسی">
+                <p:menuitem value="حضور و غیاب"/>
+                <p:menuitem value="نمرات"/>
+                <p:menuitem value="امتحانات کلاسی"/>
+            </p:submenu>
+            <p:menuitem value="ارتباط با والدین"/>
+        </p:submenu>
+        <p:submenu label="دانش آموزان">
+            <p:submenu label="برنامه ها">
+                <p:menuitem value="مشاهده برنامه هفتگی"/>
+                <p:menuitem value="مشاهده برنامه امتحانات"/>
+            </p:submenu>
+        </p:submenu>
+        <p:submenu label="والدین">
+            <p:menuitem value="مشاهده برنامه هفتگی"/>
+            <p:menuitem value="مشاهده برنامه امتحانات"/>
+            <p:menuitem value="مشاهده نمرات"/>
+            <p:menuitem value="ارتباط با معلمان"/>
+        </p:submenu>
+        <p:submenu label="ترجیحات">
+            <p:submenu label="عمومی">
+                <p:menuitem value="ظاهر برنامه"/>
+                <p:menuitem value="نحوه نمایش برنامه هفتگی" outcome="timetablesettings"/>
+            </p:submenu>
+        </p:submenu>
+    </p:panelMenu>
+</h:form>
 </body>
 </html>
