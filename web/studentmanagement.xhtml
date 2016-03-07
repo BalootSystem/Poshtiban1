@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="template/mainTemplat.xhtml">
+    <ui:define name="content">
+        <h:form>
+            <p:contextMenu for="dt_person">
+                <p:menuitem process="dt_person" value="انتخاب" icon="ui-icon-selection" update="@form"/>
+            </p:contextMenu>
+            <p:commandButton icon="ui-icon-search" onclick="PF('dlg_select_var').show()"/>
+            <p:dialog id="dlg_select" header="جزئیات" widgetVar="dlg_select_var" position="center">
+                <p:dataTable id="dt_person" widgetVar="dt_person_var"
+                             paginator="true" rows="5" value="#{studentView.students}"
+                             var="student"
+                             paginatorTemplate="
+                             {FirstPageLink} {PreviousPageLink} {PageLinks}
+                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15"
+                             selectionMode="single" rowKey="#{student.id}"
+                             selection="#{studentView.selectedPerson}"
+                             emptyMessage="اطلاعاتی موجود نیست"
+                             filteredValue="#{studentView.filterList}">
+                    <p:column headerText="کد ملی" filterBy="#{studentView.persons.get(student.personId-1).nationalCode}"
+                              filterMatchMode="contains">
+                        <p:outputLabel value="#{studentView.persons.get(student.personId-1).nationalCode}"/>
+                    </p:column>
+                    <p:column sortable="true" headerText="نام" filterBy="#{studentView.persons.get(student.personId-1).name}"
+                              filterMatchMode="contains">
+                        <p:outputLabel value="#{studentView.persons.get(student.personId-1).name}"/>
+                    </p:column>
+                    <p:column sortable="true" headerText="نام خوانوادگی" filterBy="#{studentView.persons.get(student.personId-1).lastName}"
+                              filterMatchMode="contains">
+                        <p:outputLabel value="#{studentView.persons.get(student.personId-1).lastName}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:dialog>
+            <p:panelGrid columns="3">
+                    <p:column>
+                        <p:graphicImage value="#{studentView.givePerson(studentView.selectedPerson.personId-1).picture}"/>
+                    </p:column>
+                    <p:column>
+                        نام:
+                        <h:outputText value="#{studentView.givePerson(studentView.selectedPerson.personId-1).name}"/>
+                    </p:column>
+                    <p:column>
+                        نام خوانوادگی:
+                        <h:outputText value="#{studentView.givePerson(studentView.selectedPerson.personId-1).lastName}"/>
+                    </p:column>
+                    <p:column>
+                        کد ملی:
+                        <h:outputText value="#{studentView.givePerson(studentView.selectedPerson.personId-1).nationalCode}"/>
+                    </p:column>
+                    <p:column>
+                        نام پدر:
+                        <h:outputText value="#{studentView.givePerson(studentView.selectedPerson.personId-1).fatherName}"/>
+                    </p:column>
+                    <p:column>
+                        تاریخ تولد:
+                        <h:outputText value="#{studentView.givePerson(studentView.selectedPerson.personId-1).birthday}"/>
+                    </p:column>
+                    <p:column>
+                        کد شرایط:
+                        <h:outputText value="#{studentView.selectedPerson.condition}"/>
+                    </p:column>
+                    <p:column>
+                        کد دانا:
+                        <h:outputText value="#{studentView.selectedPerson.danaCode}"/>
+                    </p:column>
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>
